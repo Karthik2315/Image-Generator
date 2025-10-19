@@ -1,7 +1,9 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <div className='flex flex-col justify-center items-center my-20'>
       <div className='text-stone-500 inline-flex text-center gap-2 bg-white py-1 px-6 rounded-full border border-neutral-500 hover:rotate-4 
@@ -14,7 +16,7 @@ const Header = () => {
         Unleash your creativity with AI. Transform your ideas into stunning visuals instantly - just type and watch the magic happen!
       </p>
 
-      <button className='flex items-center gap-2 mt-10 bg-black text-white rounded-2xl px-4 py-2 cursor-pointer hover:scale-105 transition-all duration-700'>
+      <button onClick={() => navigate('/result')} className='flex items-center gap-2 mt-10 bg-black text-white rounded-2xl px-4 py-2 cursor-pointer hover:scale-105 transition-all duration-700'>
         Generate Image
         <img src={assets.star_group} alt="start" className='w-5'/>
       </button>
