@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { assets } from '../assets/assets'
 import { motion } from "motion/react"
+import { AppContext } from '../context/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 const Result = () => {
   const[image,setImage] = useState(assets.sample_img_1);
   const[isImageLoaded,setIsImageLoaded] = useState(false);
   const [loading,setLoading] = useState(false);
   const [input,setInput] = useState('');
+  const {user} = useContext(AppContext);
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(!user)
+    {
+      navigate('/')
+    }
+  },[])
   return (
     <motion.form className='flex flex-col justify-center items-center min-h-[90vh]'
     initial={{ opacity: 0.2, y: 100 }}
