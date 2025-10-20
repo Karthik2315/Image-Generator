@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
   },
   password:{
     type:String,
-    required:true
+    required:true,
   },
   creditBalance:{
     type:Number,
@@ -25,6 +25,6 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-const useModel = mongoose.models.user || mongoose.model("user",userSchema);
+const userModel = mongoose.models.user || mongoose.model("user",userSchema);
 
-export default useModel;
+export default userModel;
