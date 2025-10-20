@@ -1,11 +1,16 @@
 import React, { useContext } from 'react'
 import { assets, plans } from '../assets/assets'
 import { AppContext } from '../context/AppContext'
+import { motion } from "motion/react"
 
 const BuyCredit = () => {
   const {user} = useContext(AppContext);
   return (
-    <div className='min-h-[80vh] flex flex-col items-center pt-14'>
+    <motion.div className='min-h-[80vh] flex flex-col items-center pt-14'
+    initial={{ opacity: 0.2, y: 100 }}
+    transition={{ duration: 1 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}>
       <button className=' border border-gray-400 px-10 py-2 rounded-full mb-6 bg-white text-blue-600
     hover:bg-gradient-to-r hover:from-blue-400 hover:via-blue-500 hover:to-blue-600 hover:text-white
     transform-gpu hover:rotate-5
@@ -23,7 +28,7 @@ const BuyCredit = () => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

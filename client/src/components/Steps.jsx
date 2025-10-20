@@ -1,9 +1,14 @@
 import React from 'react'
 import {  stepsData } from '../assets/assets'
+import { motion } from "motion/react"
 
 const Steps = () => {
   return (
-    <div className='flex flex-col items-center justify-center gap-2'>
+    <motion.div className='flex flex-col items-center justify-center gap-2'
+    initial={{ opacity: 0.2, y: 100 }}
+    transition={{ duration: 1 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}>
       <h1 className='text-5xl font-semibold mb-1'>How it works</h1>
       <p className='text-lg text-gray-600'>Transform Words to Stunning Images</p>
       <div className='mt-8 text-sm w-full max-w-3xl'>
@@ -17,7 +22,8 @@ const Steps = () => {
           </div>
         ))}
       </div>
-    </div>
+
+    </motion.div>
   )
 }
 

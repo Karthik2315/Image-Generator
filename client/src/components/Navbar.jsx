@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import {assets} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext.jsx'
+import { motion } from "motion/react"
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -26,7 +27,8 @@ const Navbar = () => {
           </div>
         </div> : <div className='flex items-center gap-8'>
         <p className='cursor-pointer' onClick={() => navigate('/buy')}> Pricing </p>
-        <button className='bg-zinc-800 text-white px-7 py-2 rounded-2xl cursor-pointer' onClick={() => setShowLogin(true)}> Login </button>
+        <motion.button className='bg-zinc-800 text-white px-7 py-2 rounded-2xl cursor-pointer' onClick={() => setShowLogin(true)}
+        initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }}> Login </motion.button>
         </div>}
       </div>
     </div>

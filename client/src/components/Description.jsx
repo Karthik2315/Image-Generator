@@ -1,9 +1,14 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+import { motion } from "motion/react"
 
 const Description = () => {
   return (
-    <div className='flex flex-col items-center justify-center mt-10 p-6 mx-50'>
+    <motion.div className='flex flex-col items-center justify-center mt-10 p-6 mx-50'
+    initial={{ opacity: 0.2, y: 100 }}
+    transition={{ duration: 1 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}>
       <h1 className='text-4xl font-bold'>Create AI Images</h1>
       <p className='text-gray-500 mt-3 mb-16'>Turn your imaginations into Visuals</p>
       <div className='flex justify-between items-center gap-8 '>
@@ -14,7 +19,7 @@ const Description = () => {
             <p className='text-gray-600 mb-4'>Simply type in a text prompt, and our cutting-edge AI will generate high-quality images in seconds. From product visuals to character designs and portraits, even concepts that don't yet exist can be visualized effortlessly. Powered by advanced AI technology, the creative possibilities are limitless!</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
