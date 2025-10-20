@@ -4,6 +4,7 @@ import 'dotenv/config';
 import connectDB from './config/mongodb.js';
 import cookieParser from 'cookie-parser';
 import UserRouter from './routes/userRoutes.js';
+import ImageRouter from './routes/imageRoutes.js';
 
 const PORT = process.env.PORT || 4000;
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors({
 app.use(cookieParser());
 await connectDB();
 app.use('/api/user',UserRouter);
+app.use('/api/image',ImageRouter);
 app.get('/',(req,res) => res.send("API working"));
 
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
