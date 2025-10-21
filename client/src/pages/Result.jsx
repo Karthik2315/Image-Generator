@@ -21,6 +21,7 @@ const Result = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      if(user.creditBalance===0) navigate('/buy');
       const {data} = await axios.post(`${backendURL}/api/image/generate-image`,{prompt:input},{withCredentials:true});
       if(data.success){
         setImage(data.image);
