@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { assets } from '../assets/assets'
+import { assets, tempData } from '../assets/assets'
 import { motion } from "motion/react"
 import { AppContext } from '../context/AppContext'
 import { useNavigate } from 'react-router-dom'
@@ -47,8 +47,8 @@ const Header = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1, duration: 1 }}>
-        {Array(6).fill('').map((item,index) => (
-          <img src={index%2==0 ? assets.sample_img_2 : assets.sample_img_1} key={index} alt="temp" className='h-20 rounded-2xl hover:scale-105 transition-all duration-300 cursor-pointer'/>
+        {tempData.map((item,index) => (
+          <img src={item} key={index} alt="temp" className='h-20 rounded-2xl hover:scale-105 transition-all duration-300 cursor-pointer'/>
         ))}
       </motion.div>
 

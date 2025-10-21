@@ -6,8 +6,7 @@ export const AppContext = createContext();
 const AppProvider = (props) => {
   const [user,setUser] = useState(null);
   const [showlogin,setShowLogin] = useState(false);
-    console.log('All env vars:', import.meta.env);
-
+  const [isloading,setIsLoading] = useState(true);
   const backendURL = import.meta.env.VITE_BACKEND_URL;
   console.log("hi",backendURL);
   useEffect(()=>{
@@ -17,12 +16,20 @@ const AppProvider = (props) => {
         setUser(response.data.user);
       } catch (error) {
         console.log(error.message);
+      } finally {
+        setIsLoading(false);
       }
     }
     fetchUser();
   },[]);
+  const updateUserCredits = (newCreditBalance) => {
+    setUser((prevUser) => ({
+      ...prevUser,
+      creditBalance: newCreditBalance,
+    }));
+  }
   const value = {
-    user,setUser,showlogin,setShowLogin,backendURL
+    user,setUser,showlogin,setShowLogin,backendURL,isloading,setIsLoading,updateUserCredits
   }
   return (
     <AppContext.Provider value={value}>

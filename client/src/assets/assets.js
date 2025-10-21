@@ -18,6 +18,11 @@ import cross_icon from './cross_icon.svg'
 import star_group from './star_group.png'
 import credit_star from './credit_star.svg'
 import profile_icon from './profile_icon.png'
+import Handsome_panda from './Handsome_panda.png'
+import coconut_Tree from './coconut tree.png'
+import Tomato from './Tomato.png'
+import girl_with_phone from './girl with phone.png'
+import space from './space.png'
 
 export const assets = {
     logo,
@@ -34,8 +39,13 @@ export const assets = {
     cross_icon,
     star_group,
     credit_star,
-    profile_icon
+    profile_icon,
+    Handsome_panda,
+    coconut_Tree,
+    Tomato
 }
+
+export const tempData  = [Handsome_panda,coconut_Tree,Tomato,sample_img_2,girl_with_phone,space];
 
 export const stepsData = [
     {
