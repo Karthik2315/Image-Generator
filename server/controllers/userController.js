@@ -153,3 +153,28 @@ export const logoutUser = async(req,res) => {
     })
   }
 }
+
+export const getUserDetails = async(req,res) => {
+  try {
+    const {id} = req.user;
+    const user = await userModel.findById(id).select('-password');
+    if(!user)
+    {
+      return res.status(404).json({
+        success:false,
+        message:"User not found"
+      })
+    }
+    else{
+      res.status(200).json({
+        success:true,
+        user
+      })
+    }
+  } catch (error) {
+    res.status(500).json({
+      success:false,
+      message:error.message
+    })
+  }
+}

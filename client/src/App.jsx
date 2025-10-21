@@ -8,6 +8,8 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Login from './components/Login'
 import { AppContext } from './context/AppContext'
+import { Toaster } from "react-hot-toast";
+
 
 const App = () => {
   const {showlogin} = useContext(AppContext);
@@ -16,6 +18,7 @@ const App = () => {
       <Navbar />
       {showlogin && 
       <Login /> }
+      <Toaster />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/result' element={<Result />} />

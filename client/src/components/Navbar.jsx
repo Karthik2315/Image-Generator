@@ -3,10 +3,26 @@ import {assets} from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext.jsx'
 import { motion } from "motion/react"
+import {toast} from 'react-hot-toast'
+import axios from 'axios'
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const {user,setShowLogin} = useContext(AppContext);
+  const {user,setShowLogin,backendURL} = useContext(AppContext);
+  const logout = async() => {
+    try {
+      const response = await axios.post(`${backendURL}/api/user/logout`,{},{withCredentials:true});
+      if(response.data.success){
+        toast.success("Logged out successfully");
+        window.location.reload();
+      } else {
+        toast.error("Error in logging out , please try again later");
+      }
+    } catch (error) {
+      console.error("Error in logging out:", error);
+      toast.error("Error in logging out , please try again later");
+    }
+  }
   return (
     <div className='flex items-center justify-between py-4'>
       <img src={assets.logo} alt="logo" className='w-28 cursor-pointer' onClick={() => navigate('/')}/>
@@ -14,14 +30,14 @@ const Navbar = () => {
         {user ? <div className='flex items-center gap-2'>
           <button className='flex items-center gap-2 bg-blue-100 px-4 py-1.5 rounded-full hover:scale-105 transition-all duration-700'>
             <img src={assets.credit_star} alt="credit" />
-            <p className='text-xs text-gray-600'>Credits Left : 50</p>
+            <p className='text-xs text-gray-600 cursor-pointer' onClick={() => navigate('/buy')}>Credits Left : {user.creditBalance}</p>
           </button>
-          <p className='text-gray-600 pl-4'>Hi, Karthik</p>
+          <p className='text-gray-600 pl-4'>Hi ,{user.name}</p>
           <div className='group relative' >
             <img src={assets.profile_icon} alt="profile" className='w-10 drop-shadow'/>
             <div className='absolute hidden group-hover:block text-black rounded pt-4'>
               <ul className='list-none m-0 p-2 bg-white rounded-md  text-sm ring-2 ring-blue-200'>
-                <li className='py-1 px-2 cursor-pointer'>LogOut</li>
+                <li onClick={logout} className='py-1 px-2 cursor-pointer'>LogOut</li>
               </ul>
             </div>
           </div>
